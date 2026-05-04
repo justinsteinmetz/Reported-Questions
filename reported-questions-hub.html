@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reported Questions — English Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;1,8..60,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f4;
+    --ink: #1c1612;
+    --mid: #5a5040;
+    --light: #9a8c78;
+    --rule: #d8d0c0;
+    --accent: #2a4a6b;
+    --accent-pale: #e8eef5;
+    --correct: #1e4d2b;
+    --correct-pale: #edf5f0;
+    --wrong: #7a1f1f;
+    --wrong-pale: #fdf0f0;
+    --note: #6b4a00;
+    --note-pale: #fdf6e3;
+    --tag-wh: #2a4a6b;
+    --tag-yn: #4a2a6b;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 300;
+    line-height: 1.75;
+    font-size: 16px;
+  }
+
+  /* TOP BAR */
+  .topbar {
+    background: var(--ink);
+    color: #c8b89a;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .topbar a {
+    color: #c8b89a;
+    text-decoration: none;
+    opacity: 0.6;
+    transition: opacity 0.2s;
+  }
+
+  .topbar a:hover { opacity: 1; }
+
+  /* HERO */
+  .hero {
+    padding: 60px 40px 48px;
+    max-width: 860px;
+    margin: 0 auto;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--mid);
+    max-width: 560px;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  /* LAYOUT */
+  .content {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 80px;
+  }
+
+  /* SECTIONS */
+  .section {
+    padding: 44px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .section:last-child { border-bottom: none; }
+
+  .section-number {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light);
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  /* PROSE */
+  p {
+    margin-bottom: 16px;
+    color: var(--ink);
+  }
+
+  /* COMPARISON TABLE */
+  .compare-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border: 1px solid var(--rule);
+    margin: 24px 0;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .compare-col {
+    padding: 20px 24px;
+  }
+
+  .compare-col:first-child {
+    border-right: 1px solid var(--rule);
+    background: rgba(0,0,0,0.02);
+  }
+
+  .compare-header {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .compare-col:first-child .compare-header { color: var(--wrong); }
+  .compare-col:last-child .compare-header { color: var(--correct); }
+
+  .compare-example {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: var(--mid);
+    margin-bottom: 8px;
+  }
+
+  .compare-example .label {
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--light);
+    display: block;
+    margin-bottom: 2px;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .compare-example .form {
+    color: var(--ink);
+    font-size: 14px;
+  }
+
+  /* RULE CARDS */
+  .rule-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  @media (max-width: 600px) {
+    .rule-grid { grid-template-columns: 1fr; }
+    .compare-block { grid-template-columns: 1fr; }
+    .hero-title { font-size: 34px; }
+  }
+
+  .rule-card {
+    border: 1px solid var(--rule);
+    padding: 20px 22px;
+    position: relative;
+  }
+
+  .rule-card::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -1px; right: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 60px;
+    color: rgba(0,0,0,0.04);
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .rule-card-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .rule-card-body {
+    font-size: 14px;
+    color: var(--mid);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .rule-card-example {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    background: var(--accent-pale);
+    padding: 8px 12px;
+    color: var(--accent);
+    line-height: 1.6;
+    border-left: 2px solid var(--accent);
+  }
+
+  /* TENSE TABLE */
+  .tense-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+  }
+
+  .tense-table th {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light);
+    padding: 10px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--ink);
+    font-weight: 400;
+  }
+
+  .tense-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+  }
+
+  .tense-table tr:last-child td { border-bottom: none; }
+
+  .tense-table .direct-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--mid);
+  }
+
+  .tense-table .reported-col {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+  }
+
+  .tense-table .shift-col {
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  .arrow { color: var(--light); font-size: 11px; padding: 0 8px; }
+
+  /* TYPE TAG */
+  .type-tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  .tag-wh { background: #e8eef5; color: var(--tag-wh); }
+  .tag-yn { background: #f0e8f5; color: var(--tag-yn); }
+
+  /* NOTE BOX */
+  .note-box {
+    background: var(--note-pale);
+    border-left: 3px solid var(--note);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-size: 14px;
+    color: var(--note);
+    line-height: 1.65;
+  }
+
+  .note-box strong {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  /* ===== EXERCISES ===== */
+  .exercise-block {
+    background: white;
+    border: 1px solid var(--rule);
+    padding: 28px 30px;
+    margin: 28px 0;
+  }
+
+  .ex-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .ex-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--light);
+  }
+
+  .ex-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+  }
+
+  .ex-instruction {
+    font-size: 14px;
+    color: var(--mid);
+    margin-bottom: 18px;
+    font-style: italic;
+  }
+
+  /* MCQ */
+  .mcq-item {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .mcq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+  .mcq-prompt {
+    font-size: 15px;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+
+  .mcq-prompt .quoted {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--mid);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .mcq-options {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .mcq-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 12px;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--mid);
+    border-radius: 2px;
+  }
+
+  .mcq-option:hover { background: var(--accent-pale); border-color: var(--rule); }
+  .mcq-option.selected-correct { background: var(--correct-pale); border-color: var(--correct); color: var(--correct); }
+  .mcq-option.selected-wrong { background: var(--wrong-pale); border-color: var(--wrong); color: var(--wrong); }
+  .mcq-option.revealed-correct { background: var(--correct-pale); border-color: var(--correct); color: var(--correct); opacity: 0.7; }
+  .mcq-option input[type="radio"] { display: none; }
+
+  .mcq-feedback {
+    margin-top: 8px;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    min-height: 18px;
+    color: var(--light);
+  }
+
+  /* TRANSFORMATION EXERCISE */
+  .transform-item {
+    margin-bottom: 24px;
+  }
+
+  .transform-direct {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--mid);
+    margin-bottom: 4px;
+  }
+
+  .transform-direct .qs {
+    color: var(--ink);
+  }
+
+  .transform-stem {
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--ink);
+  }
+
+  .transform-stem em {
+    font-style: normal;
+    color: var(--light);
+  }
+
+  .transform-input {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    border: none;
+    border-bottom: 1.5px solid var(--rule);
+    background: transparent;
+    color: var(--ink);
+    outline: none;
+    padding: 4px 0;
+    width: 100%;
+    max-width: 460px;
+    transition: border-color 0.2s;
+  }
+
+  .transform-input:focus { border-bottom-color: var(--accent); }
+  .transform-input.correct { border-bottom-color: var(--correct); color: var(--correct); }
+  .transform-input.wrong { border-bottom-color: var(--wrong); }
+
+  .transform-feedback {
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    margin-top: 5px;
+    min-height: 16px;
+    color: var(--light);
+  }
+
+  .transform-feedback.correct { color: var(--correct); }
+  .transform-feedback.wrong { color: var(--wrong); }
+
+  .check-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    background: var(--ink);
+    color: white;
+    border: none;
+    padding: 9px 20px;
+    cursor: pointer;
+    margin-top: 16px;
+    transition: background 0.2s;
+  }
+
+  .mcq-options.locked {
+    pointer-events: none;
+  }
+
+  .mcq-options.locked .mcq-option {
+    cursor: default;
+  }
+
+  .mcq-options.locked .mcq-option:not(.selected-correct):not(.selected-wrong):not(.revealed-correct) {
+    opacity: 0.45;
+  }
+
+  .reset-btn {
+    background: transparent;
+    color: var(--mid);
+    border: 1px solid var(--rule);
+    margin-left: 10px;
+  }
+
+  .reset-btn:hover {
+    background: var(--accent-pale);
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  .ex-score {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--rule);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: var(--light);
+    display: none;
+  }
+
+  .ex-score.visible { display: block; }
+
+  /* SUMMARY BOX */
+  .summary-box {
+    background: var(--ink);
+    color: #e8dcc8;
+    padding: 32px 36px;
+    margin: 40px 0 0;
+  }
+
+  .summary-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 18px;
+    color: white;
+  }
+
+  .summary-rule {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .summary-bullet {
+    font-family: 'JetBrains Mono', monospace;
+    color: #c8b89a;
+    font-size: 10px;
+    margin-top: 3px;
+    flex-shrink: 0;
+  }
+
+  .summary-rule code {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    background: rgba(255,255,255,0.1);
+    padding: 1px 5px;
+    color: #d8c8a8;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <span>DSP English Hub</span>
+  <span>Grammar · Reported Speech</span>
+  <a href="#">← Back to Hub</a>
+</div>
+
+<div class="hero">
+  <div class="hero-kicker">Grammar Reference + Practice</div>
+  <h1 class="hero-title">Reported Questions</h1>
+  <p class="hero-sub">When you report what someone asked, the structure changes. Two rules govern everything: word order and tense.</p>
+</div>
+
+<div class="content">
+
+  <!-- SECTION 1: WHAT CHANGES -->
+  <div class="section">
+    <div class="section-number">01 — The Core Problem</div>
+    <h2 class="section-title">Why questions change when reported</h2>
+
+    <p>When you ask a question directly, English uses inverted word order and auxiliary verbs: <em>"Where do you live?"</em> When you report that question, both of those things disappear. The reported version looks and sounds like a statement, not a question.</p>
+
+    <p>Two things always change. Sometimes a third does too.</p>
+
+    <div class="rule-grid">
+      <div class="rule-card" data-num="1">
+        <div class="rule-card-title">Rule 1 — Word order</div>
+        <div class="rule-card-body">No inversion. No auxiliary verb. The word order becomes subject + verb, like in a statement.</div>
+        <div class="rule-card-example">"Where does she live?"<br>→ He asked where she <strong>lived</strong><br>(not: where <s>did she live</s>)</div>
+      </div>
+      <div class="rule-card" data-num="2">
+        <div class="rule-card-title">Rule 2 — Tense shift</div>
+        <div class="rule-card-body">The verb moves one step back in time. Present becomes past; past becomes past perfect.</div>
+        <div class="rule-card-example">"Are you ready?"<br>→ She asked if I <strong>was</strong> ready<br>(not: if I <s>am</s> ready)</div>
+      </div>
+      <div class="rule-card" data-num="3">
+        <div class="rule-card-title">Rule 3 — Yes/No connector</div>
+        <div class="rule-card-body">Yes/no questions need <strong>if</strong> or <strong>whether</strong> to link the reported question to the verb.</div>
+        <div class="rule-card-example">"Have you met him?"<br>→ She asked <strong>if</strong> I had met him<br>→ She asked <strong>whether</strong> I had met him</div>
+      </div>
+      <div class="rule-card" data-num="4">
+        <div class="rule-card-title">No question mark</div>
+        <div class="rule-card-body">A reported question is a statement. It ends with a full stop, not a question mark.</div>
+        <div class="rule-card-example">
+          ✗ She asked where I was going?<br>
+          ✓ She asked where I was going.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: TENSE SHIFTS -->
+  <div class="section">
+    <div class="section-number">02 — Tense Reference</div>
+    <h2 class="section-title">How tenses shift</h2>
+
+    <p>The verb in the original question shifts one step into the past when reported. Here are all the shifts you need:</p>
+
+    <table class="tense-table">
+      <thead>
+        <tr>
+          <th>Direct question uses</th>
+          <th></th>
+          <th>Reported question uses</th>
+          <th>Example</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="shift-col">present simple<br><em>is / are / do / does</em></td>
+          <td class="arrow">→</td>
+          <td class="shift-col">past simple<br><em>was / were / did</em></td>
+          <td class="reported-col">"Are you ready?" → she asked if I <strong>was</strong> ready</td>
+        </tr>
+        <tr>
+          <td class="shift-col">present continuous<br><em>is/are + -ing</em></td>
+          <td class="arrow">→</td>
+          <td class="shift-col">past continuous<br><em>was/were + -ing</em></td>
+          <td class="reported-col">"What are you doing?" → she asked what I <strong>was doing</strong></td>
+        </tr>
+        <tr>
+          <td class="shift-col">past simple<br><em>did / went / said</em></td>
+          <td class="arrow">→</td>
+          <td class="shift-col">past perfect<br><em>had + past participle</em></td>
+          <td class="reported-col">"Where did you go?" → she asked where I <strong>had gone</strong></td>
+        </tr>
+        <tr>
+          <td class="shift-col">present perfect<br><em>have/has + pp</em></td>
+          <td class="arrow">→</td>
+          <td class="shift-col">past perfect<br><em>had + past participle</em></td>
+          <td class="reported-col">"Have you eaten?" → she asked if I <strong>had eaten</strong></td>
+        </tr>
+        <tr>
+          <td class="shift-col">will</td>
+          <td class="arrow">→</td>
+          <td class="shift-col">would</td>
+          <td class="reported-col">"Will you help?" → she asked if I <strong>would</strong> help</td>
+        </tr>
+        <tr>
+          <td class="shift-col">can</td>
+          <td class="arrow">→</td>
+          <td class="shift-col">could</td>
+          <td class="reported-col">"Can you swim?" → she asked if I <strong>could</strong> swim</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <strong>Note</strong>
+      Could, would, should, might, and ought to do not change — they are already past in form.
+    </div>
+  </div>
+
+  <!-- SECTION 3: TWO TYPES -->
+  <div class="section">
+    <div class="section-number">03 — Two Types</div>
+    <h2 class="section-title">wh-questions vs yes/no questions</h2>
+
+    <p>The two types of direct question are reported differently. The difference is in how you connect the reported clause.</p>
+
+    <div class="compare-block">
+      <div class="compare-col">
+        <div class="compare-header">wh-questions — use the wh-word</div>
+        <div class="compare-example">
+          <span class="label">Direct</span>
+          <span class="form">"Where do you live?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">He asked <strong>where</strong> I lived.</span>
+        </div>
+        <div class="compare-example" style="margin-top:12px">
+          <span class="label">Direct</span>
+          <span class="form">"Why did she leave?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">He asked <strong>why</strong> she had left.</span>
+        </div>
+        <div class="compare-example" style="margin-top:12px">
+          <span class="label">Direct</span>
+          <span class="form">"What time will you arrive?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">He asked <strong>what time</strong> I would arrive.</span>
+        </div>
+      </div>
+      <div class="compare-col">
+        <div class="compare-header">yes/no questions — use if or whether</div>
+        <div class="compare-example">
+          <span class="label">Direct</span>
+          <span class="form">"Are you coming?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">She asked <strong>if</strong> I was coming.</span>
+        </div>
+        <div class="compare-example" style="margin-top:12px">
+          <span class="label">Direct</span>
+          <span class="form">"Have you seen him?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">She asked <strong>whether</strong> I had seen him.</span>
+        </div>
+        <div class="compare-example" style="margin-top:12px">
+          <span class="label">Direct</span>
+          <span class="form">"Did you eat breakfast?"</span>
+        </div>
+        <div class="compare-example">
+          <span class="label">Reported</span>
+          <span class="form">She asked <strong>if</strong> I had eaten breakfast.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note-box">
+      <strong>if vs whether</strong>
+      Both are correct for yes/no questions. <em>Whether</em> is slightly more formal and is often preferred in writing.
+    </div>
+  </div>
+
+  <!-- EXERCISE 1: MCQ -->
+  <div class="section">
+    <div class="section-number">04 — Practice</div>
+    <h2 class="section-title">Exercises</h2>
+
+    <div class="exercise-block">
+      <div class="ex-header">
+        <span class="ex-num">Exercise A</span>
+        <span class="ex-title">Choose the correct reported form</span>
+      </div>
+      <p class="ex-instruction">Select the correctly reported version of each direct question.</p>
+
+      <!-- Q1 -->
+      <div class="mcq-item" data-correct="b">
+        <div class="mcq-prompt">
+          <span class="quoted">"Where does your family live?"</span>
+          She asked me ___________
+        </div>
+        <div class="mcq-options">
+          <label class="mcq-option" onclick="selectOption(this, 'a', 'mcq1')">
+            <input type="radio" name="mcq1" value="a">
+            a) where does my family live
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'b', 'mcq1')">
+            <input type="radio" name="mcq1" value="b">
+            b) where my family lived
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'c', 'mcq1')">
+            <input type="radio" name="mcq1" value="c">
+            c) where did my family live
+          </label>
+        </div>
+        <div class="mcq-feedback" id="mcq1-fb"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="mcq-item" data-correct="c">
+        <div class="mcq-prompt">
+          <span class="quoted">"Have you ever been to New York?"</span>
+          He wanted to know ___________
+        </div>
+        <div class="mcq-options">
+          <label class="mcq-option" onclick="selectOption(this, 'a', 'mcq2')">
+            <input type="radio" name="mcq2" value="a">
+            a) have I ever been to New York
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'b', 'mcq2')">
+            <input type="radio" name="mcq2" value="b">
+            b) if I have ever been to New York
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'c', 'mcq2')">
+            <input type="radio" name="mcq2" value="c">
+            c) if I had ever been to New York
+          </label>
+        </div>
+        <div class="mcq-feedback" id="mcq2-fb"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="mcq-item" data-correct="a">
+        <div class="mcq-prompt">
+          <span class="quoted">"Why did you change your answer?"</span>
+          The teacher asked me ___________
+        </div>
+        <div class="mcq-options">
+          <label class="mcq-option" onclick="selectOption(this, 'a', 'mcq3')">
+            <input type="radio" name="mcq3" value="a">
+            a) why I had changed my answer
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'b', 'mcq3')">
+            <input type="radio" name="mcq3" value="b">
+            b) why did I change my answer
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'c', 'mcq3')">
+            <input type="radio" name="mcq3" value="c">
+            c) why I change my answer
+          </label>
+        </div>
+        <div class="mcq-feedback" id="mcq3-fb"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="mcq-item" data-correct="b">
+        <div class="mcq-prompt">
+          <span class="quoted">"Will you come to the party?"</span>
+          She asked me ___________
+        </div>
+        <div class="mcq-options">
+          <label class="mcq-option" onclick="selectOption(this, 'a', 'mcq4')">
+            <input type="radio" name="mcq4" value="a">
+            a) if I will come to the party
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'b', 'mcq4')">
+            <input type="radio" name="mcq4" value="b">
+            b) if I would come to the party
+          </label>
+          <label class="mcq-option" onclick="selectOption(this, 'c', 'mcq4')">
+            <input type="radio" name="mcq4" value="c">
+            c) whether would I come to the party
+          </label>
+        </div>
+        <div class="mcq-feedback" id="mcq4-fb"></div>
+      </div>
+
+    </div>
+
+    <!-- EXERCISE B: TRANSFORMATION -->
+    <div class="exercise-block">
+      <div class="ex-header">
+        <span class="ex-num">Exercise B</span>
+        <span class="ex-title">Transform the questions</span>
+      </div>
+      <p class="ex-instruction">Report each direct question. Complete the sentence. Press Check when you've finished all five.</p>
+
+      <div class="transform-item" id="t1">
+        <div class="transform-direct">Direct: <span class="qs">"What are you reading?"</span></div>
+        <div class="transform-stem">He asked me what <em>___________</em></div>
+        <input class="transform-input" id="t1-input" placeholder="I was reading" autocomplete="off" spellcheck="false">
+        <div class="transform-feedback" id="t1-fb"></div>
+      </div>
+
+      <div class="transform-item" id="t2">
+        <div class="transform-direct">Direct: <span class="qs">"Did you finish the homework?"</span></div>
+        <div class="transform-stem">She asked me if <em>___________</em></div>
+        <input class="transform-input" id="t2-input" placeholder="I had finished the homework" autocomplete="off" spellcheck="false">
+        <div class="transform-feedback" id="t2-fb"></div>
+      </div>
+
+      <div class="transform-item" id="t3">
+        <div class="transform-direct">Direct: <span class="qs">"How long have you been waiting?"</span></div>
+        <div class="transform-stem">He wanted to know how long <em>___________</em></div>
+        <input class="transform-input" id="t3-input" placeholder="I had been waiting" autocomplete="off" spellcheck="false">
+        <div class="transform-feedback" id="t3-fb"></div>
+      </div>
+
+      <div class="transform-item" id="t4">
+        <div class="transform-direct">Direct: <span class="qs">"Can you speak German?"</span></div>
+        <div class="transform-stem">She asked me whether <em>___________</em></div>
+        <input class="transform-input" id="t4-input" placeholder="I could speak German" autocomplete="off" spellcheck="false">
+        <div class="transform-feedback" id="t4-fb"></div>
+      </div>
+
+      <div class="transform-item" id="t5">
+        <div class="transform-direct">Direct: <span class="qs">"Where will you be tomorrow?"</span></div>
+        <div class="transform-stem">He asked me where <em>___________</em></div>
+        <input class="transform-input" id="t5-input" placeholder="I would be the next day" autocomplete="off" spellcheck="false">
+        <div class="transform-feedback" id="t5-fb"></div>
+      </div>
+
+      <button class="check-btn" onclick="checkTransformations()">Check answers</button>
+      <button class="check-btn reset-btn" onclick="resetTransformations()">Reset</button>
+      <div class="ex-score" id="transform-score"></div>
+    </div>
+
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="summary-box">
+    <div class="summary-title">Quick Reference</div>
+    <div class="summary-rule">
+      <span class="summary-bullet">—</span>
+      <span>Reported questions use <strong>statement word order</strong> — no inversion, no auxiliary: <code>she asked where I lived</code></span>
+    </div>
+    <div class="summary-rule">
+      <span class="summary-bullet">—</span>
+      <span>The verb shifts <strong>one tense back</strong>: present → past, past → past perfect, will → would, can → could</span>
+    </div>
+    <div class="summary-rule">
+      <span class="summary-bullet">—</span>
+      <span>Yes/no questions need <strong>if</strong> or <strong>whether</strong>: <code>she asked if I had eaten</code></span>
+    </div>
+    <div class="summary-rule">
+      <span class="summary-bullet">—</span>
+      <span>Reported questions end with a <strong>full stop</strong>, not a question mark</span>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// MCQ LOGIC
+const mcqFeedback = {
+  mcq1: { b: '✓ Correct — statement word order, tense shifted to past.', a: '✗ Inversion error: reported questions use statement order.', c: '✗ Inversion error: remove the auxiliary "did".' },
+  mcq2: { c: '✓ Correct — yes/no question uses "if", present perfect shifts to past perfect.', a: '✗ Missing "if/whether", tense not shifted, and inversion error — three problems at once.', b: '✗ Tense error: "have been" → "had been" in reported speech.' },
+  mcq3: { a: '✓ Correct — past simple shifts to past perfect: changed → had changed.', b: '✗ Inversion error: remove "did". Reported questions use statement word order.', c: '✗ Tense error: present simple must shift back — "change" → "had changed".' },
+  mcq4: { b: '✓ Correct — "will" → "would", yes/no question uses "if".', a: '✗ Tense error: "will" must shift to "would".', c: '✗ Inversion error after "whether".' }
+};
+
+function selectOption(el, val, group) {
+  const item = el.closest('.mcq-item');
+
+  // Lock after first answer
+  if (item.dataset.answered) return;
+  item.dataset.answered = 'true';
+  item.querySelector('.mcq-options').classList.add('locked');
+
+  const correct = item.dataset.correct;
+  const fb = document.getElementById(group + '-fb');
+
+  if (val === correct) {
+    el.classList.add('selected-correct');
+    fb.textContent = mcqFeedback[group][val];
+    fb.style.color = 'var(--correct)';
+  } else {
+    el.classList.add('selected-wrong');
+    fb.textContent = mcqFeedback[group][val];
+    fb.style.color = 'var(--wrong)';
+    setTimeout(() => {
+      item.querySelectorAll('.mcq-option').forEach(o => {
+        const oVal = o.querySelector('input').value;
+        if (oVal === correct) o.classList.add('revealed-correct');
+      });
+    }, 1000);
+  }
+}
+
+// TRANSFORMATION LOGIC
+const transformAnswers = {
+  't1': ['i was reading', 'i was reading.'],
+  't2': ['i had finished the homework', 'i had finished the homework.', 'i had finished it', 'i had done the homework', 'i had done the homework.'],
+  't3': ['i had been waiting', 'i had been waiting.'],
+  't4': ['i could speak german', 'i could speak german.'],
+  't5': ['i would be the next day', 'i would be the following day', 'i would be tomorrow', 'i would be tomorrow.', 'i would be the next day.'],
+};
+
+const transformCorrectText = {
+  't1': '✓ I was reading — present continuous → past continuous',
+  't2': '✓ I had finished the homework — past simple → past perfect',
+  't3': '✓ I had been waiting — present perfect continuous → past perfect continuous',
+  't4': '✓ I could speak German — can → could',
+  't5': '✓ I would be the next day — will → would'
+};
+
+function norm(s) {
+  return s.toLowerCase().trim().replace(/[.,!?]$/, '').replace(/\s+/g, ' ');
+}
+
+function checkTransformations() {
+  let correct = 0;
+  const ids = ['t1', 't2', 't3', 't4', 't5'];
+
+  ids.forEach(id => {
+    const input = document.getElementById(id + '-input');
+    const fb = document.getElementById(id + '-fb');
+    const val = norm(input.value);
+
+    if (!val) {
+      fb.textContent = '— no answer entered';
+      fb.className = 'transform-feedback';
+      return;
+    }
+
+    const answers = transformAnswers[id];
+    const isCorrect = answers.some(a => val === norm(a) || val.includes(norm(a)));
+
+    if (isCorrect) {
+      correct++;
+      input.classList.add('correct');
+      input.classList.remove('wrong');
+      fb.textContent = transformCorrectText[id];
+      fb.className = 'transform-feedback correct';
+    } else {
+      input.classList.add('wrong');
+      input.classList.remove('correct');
+      // Diagnose
+      let diagnosis = '✗ ';
+      if (val.includes('am ') || val.includes('are ') || val.includes('is ') || val.includes('have ') || val.includes('has ')) {
+        diagnosis += 'Tense error — shift the verb one step back.';
+      } else if (val.includes(' do ') || val.includes(' does ') || val.includes(' did ')) {
+        diagnosis += 'Inversion error — remove the auxiliary.';
+      } else {
+        diagnosis += 'Not quite. Check tense and word order. ' + transformCorrectText[id].replace('✓ ', 'Answer: ');
+      }
+      fb.textContent = diagnosis;
+      fb.className = 'transform-feedback wrong';
+    }
+  });
+
+  const scoreEl = document.getElementById('transform-score');
+  scoreEl.textContent = `Score: ${correct} / ${ids.length}${correct === ids.length ? ' — full marks.' : correct >= 3 ? ' — good.' : ' — review the tense table above.'}`;
+  scoreEl.classList.add('visible');
+  scoreEl.style.color = correct >= 4 ? 'var(--correct)' : correct >= 2 ? 'var(--note)' : 'var(--wrong)';
+}
+
+// Enter on transform inputs
+document.querySelectorAll('.transform-input').forEach(input => {
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') checkTransformations();
+  });
+});
+
+function resetTransformations() {
+  ['t1','t2','t3','t4','t5'].forEach(id => {
+    const input = document.getElementById(id + '-input');
+    const fb = document.getElementById(id + '-fb');
+    input.value = '';
+    input.classList.remove('correct', 'wrong');
+    fb.textContent = '';
+    fb.className = 'transform-feedback';
+  });
+  const scoreEl = document.getElementById('transform-score');
+  scoreEl.textContent = '';
+  scoreEl.classList.remove('visible');
+}
+</script>
+</body>
+</html>
