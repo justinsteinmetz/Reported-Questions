@@ -1,6 +1,6 @@
 # Reported Questions 
 
-https://justinsteinmetz.github.io/Reported-Questions-/
+https://justinsteinmetz.github.io/Reported-Questions/
 
 A self-contained reference and practice page for the DSP English Hub. Covers reported questions in full: the core rules, tense shift table, structural comparison of wh- and yes/no types, and two interactive exercises with diagnostic feedback.
 
